@@ -1,6 +1,7 @@
 import { useState } from "react";
 import CardUsuarios from "./cards/Users-Cards.jsx";
 import Search from "./search/search.jsx"; 
+import CriarUsuario from "./criar-usuario/CriarUsuario.jsx";
 
 export default function UserPage() {
   const [search, setSearch] = useState("");
@@ -18,8 +19,11 @@ export default function UserPage() {
       }
     ]
   return (
-    <div className="flex flex-col gap-16 items-center justify-center">
-      <Search search={search} setSearch={setSearch}/>
+    <div className="flex flex-col gap-10 items-center justify-center">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <Search search={search} setSearch={setSearch}/>
+        <CriarUsuario />
+      </div>
       <CardUsuarios usuarios={usuarios} search={search}/>
     </div>
   );

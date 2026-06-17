@@ -4,8 +4,8 @@ import { useState } from "react";
 export default function Search({search, setSearch}){
 
   return (
-    <div className="mt-4 relative">
-      <form>
+    <div className="mt-4">
+      <form className="relative">
       <input
       value={search}
       onChange={(e) => setSearch(e.target.value)} 
@@ -19,8 +19,8 @@ export default function Search({search, setSearch}){
         border-2
       border-gray-500 
         p-1 
-        px-4 
         w-3xs
+        px-4 
         rounded-lg 
         focus:outline-none 
         focus:border-gray-400 
