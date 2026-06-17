@@ -4,7 +4,7 @@ import { useState } from "react";
 export default function Search({search, setSearch}){
 
   return (
-    <div className="mt-4">
+    <div className="flex">
       <form className="relative">
       <input
       value={search}
