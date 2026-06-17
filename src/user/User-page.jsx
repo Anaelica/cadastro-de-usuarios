@@ -20,7 +20,7 @@ export default function UserPage() {
     ]
   return (
     <div className="flex flex-col gap-10 items-center justify-center">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center justify-center mt-4">
         <Search search={search} setSearch={setSearch}/>
         <CriarUsuario />
       </div>
