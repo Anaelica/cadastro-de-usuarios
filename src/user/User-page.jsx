@@ -8,14 +8,16 @@ export default function UserPage() {
   
   const usuarios = [
       { 
+        id: 1,
         avatar: "https://i.pinimg.com/1200x/c3/b6/27/c3b62766f107dd52da4de3ed53976cbe.jpg",
         name: "anaelica barbosa", 
         email: "anaanaelica@gmail"
       },
       { 
+        id: 2,
         avatar: "https://i.pinimg.com/736x/66/86/ae/6686ae04340f0125502a1fc08bf482da.jpg",
         name: "Eduardo", 
-        email: "eduaaaaaaa@gmail"
+        email: "eduaaaaaaa@gmail",
       }
     ]
   return (
