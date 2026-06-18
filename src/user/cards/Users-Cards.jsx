@@ -48,9 +48,16 @@
                 <div className="h-1/2">
                   <div className="flex justify-center mb-2">
                     <img
-                      src={usuario.avatar}
+                      src={
+                        usuario.avatar?.startsWith("http")
+                          ? usuario.avatar
+                          : `http://localhost:3001/uploads/${usuario.avatar}`
+                      }
+                      onError={(e) => {
+                        e.currentTarget.src = "/default-avatar.png";
+                      }}
                       alt={usuario.name}
-                      className="h-10 w-10 rounded-full"
+                      className="h-10 w-10 rounded-full object-cover"
                     />
                   </div>
 
