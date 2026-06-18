@@ -58,12 +58,21 @@ export default function Modal({ onClose }) {
         </div>
        </form>
 
-        <button
+        <div className="flex gap-8">
+          <button
           onClick={onClose}
-          className="mt-4 bg-blue-600 px-4 py-2 rounded-lg text-white w-fit"
-        >
-          Fechar
-        </button>
+          className="mt-4 bg-red-700 px-4 py-2 rounded-lg text-white w-fit"
+          >
+            Fechar
+          </button>
+
+          <button
+            onClick={onClose}
+            className="mt-4 bg-neutral-800 px-8 py-2 rounded-lg text-white w-fit"
+          >
+            Criar
+          </button>
+        </div>
       </div>
     </div>
   );
