@@ -45,8 +45,8 @@ setPreview(null);
   };
 
   return (
-    <div className="fixed inset-0 bg-black/70 flex items-center justify-center">
-      <div className="flex flex-col gap-6 bg-zinc-900 rounded-2xl p-6 w-96">
+    <div className="fixed inset-0 bg-black/70 flex items-center justify-center p-4">
+      <div className="w-full max-w-md bg-zinc-900 rounded-2xl p-6 flex flex-col gap-6">
 
         <h2 className="text-white text-xl font-semibold">
           Registre um novo usuario
@@ -66,19 +66,29 @@ setPreview(null);
             )}
           </div>
 
+          <div className="relative">
+            <label className="absolute text-gray-300 bg-zinc-900 px-2 h-5 left-4 -top-4">
+              Nome
+            </label>
           <input
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="Nome"
             className="w-full h-12 border-2 p-2 text-gray-200 rounded-md"
           />
+          </div>
 
+          <div className="relative">
+            <label className="absolute text-gray-300 bg-zinc-900 px-2 h-5 left-4 -top-4">
+              Email
+            </label>
           <input
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Email"
             className="w-full h-12 border-2 p-2 text-gray-200 rounded-md"
           />
+          </div>
 
           <div className="flex gap-8">
             <button

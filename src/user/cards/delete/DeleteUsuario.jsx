@@ -1,7 +1,7 @@
 export default function DeletarUsuario({ usuario, onClose }) {
   return (
     <div className="fixed inset-0 bg-black/40 flex items-center justify-center">
-      <div className="flex flex-col gap-3 bg-zinc-900 rounded-2xl p-6 w-96">
+      <div className="flex flex-col gap-3 bg-zinc-900 rounded-2xl p-6 m-6 md:p-6 w-96">
         <div className="flex flex-col gap-2">
           <h2 className="text-white text-xl font-semibold">
             Quer mesmo deletar {usuario?.nome}?
