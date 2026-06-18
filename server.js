@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient, Prisma } from "@prisma/client";
 import express from "express"
 import cors from "cors"
 import multer from "multer"
@@ -51,6 +51,16 @@ app.post("/usuarios", upload.single("avatar"), async (request, response) => {
     return response.status(200).json(usuario);
   } catch (error) {
     console.error(error);
+
+    if(
+      error instanceof Prisma.PrismaClientKnownRequestError && 
+      error.code === "P2002"
+    ){
+      return response.status(409).json({
+        message: "Já existe um usuario com esse e-mail"
+      })
+    }
+    
 
     return response.status(500).json({
       message: "Erro ao criar um novo usuario.",

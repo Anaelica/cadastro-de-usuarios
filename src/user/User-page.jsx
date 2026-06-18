@@ -26,7 +26,7 @@ export default function UserPage() {
     <div className="flex flex-col gap-10 items-center justify-center">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-4">
         <Search search={search} setSearch={setSearch}/>
-        <CriarUsuario />
+        <CriarUsuario onCreate={buscarUsuarios} />
       </div>
       <CardUsuarios 
       usuarios={usuarios} 
