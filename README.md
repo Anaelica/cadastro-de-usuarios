@@ -148,6 +148,11 @@ Durante o desenvolvimento deste projeto foram praticados conceitos como:
 
 ---
 
+## Deploy
+
+Acesse o projeto online:  
+https://cadastro-de-usuarios-theta.vercel.app/
+
 ## Autor
 
 **Anaelica Barbosa**
