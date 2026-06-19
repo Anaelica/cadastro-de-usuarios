@@ -9,6 +9,13 @@ export default function Modal({ onClose, onCreate }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const emailValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailValido.test(email)) {
+      alert("Digite um e-mail válido.");
+      return;
+    }
+
     const formData = new FormData();
 
     formData.append("name", name);
@@ -22,6 +29,7 @@ export default function Modal({ onClose, onCreate }) {
       method: "POST",
       body: formData,
     });
+
 
     const data = await response.json();
 

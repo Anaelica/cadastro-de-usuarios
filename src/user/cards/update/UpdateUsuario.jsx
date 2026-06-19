@@ -8,6 +8,12 @@ export default function AtualizarUsuario({ usuario, onClose, onSuccess }) {
 
   //o processo de atualização ficará aqui
   async function handleUpdate(){
+    const emailValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (!emailValido.test(email)) {
+        alert("Digite um e-mail válido.");
+        return;
+      }
     try {
       const formData = new FormData()
   
@@ -18,7 +24,6 @@ export default function AtualizarUsuario({ usuario, onClose, onSuccess }) {
       if(avatar){
         formData.append("avatar", avatar)
       }
-  
       const response = await fetch(
          `http://localhost:3001/usuarios/${usuario.id}`,
         {
@@ -83,6 +88,7 @@ export default function AtualizarUsuario({ usuario, onClose, onSuccess }) {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           className="bg-zinc-800 text-white rounded-lg p-2 outline-none border-2 border-transparent focus:border-gray-500"
+          required
         />
         <div className="flex gap-8">
           <button
