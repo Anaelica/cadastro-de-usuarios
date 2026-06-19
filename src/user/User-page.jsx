@@ -28,9 +28,11 @@ export default function UserPage() {
         <Search search={search} setSearch={setSearch}/>
         <CriarUsuario onCreate={buscarUsuarios} />
       </div>
-      <CardUsuarios 
-      usuarios={usuarios} 
-      search={search}/>
+     <CardUsuarios 
+        usuarios={usuarios} 
+        search={search}
+        onRefresh={buscarUsuarios}
+      />
     </div>
   );
 }

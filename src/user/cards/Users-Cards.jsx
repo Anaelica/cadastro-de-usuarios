@@ -3,7 +3,7 @@
   import DeletarUsuario from "./delete/DeleteUsuario.jsx";
   import AtualizarUsuario from "./update/UpdateUsuario.jsx";
 
-  export default function CardUsuarios({ usuarios, search }) {
+  export default function CardUsuarios({ usuarios, search, onRefresh }) {
     const [openUpdateModal, setOpenUpdateModal] = useState(false);
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
     const [usuarioSelecionado, setUsuarioSelecionado] = useState(null);
@@ -103,6 +103,7 @@
         <AtualizarUsuario
           usuario={usuarioSelecionado}
           onClose={() => setOpenUpdateModal(false)}
+          onSuccess={onRefresh}
         />
       )}
 
@@ -110,6 +111,8 @@
         <DeletarUsuario
           usuario={usuarioSelecionado}
           onClose={() => setOpenDeleteModal(false)}
+          onSuccess={onRefresh}
+
         />
       )}
       </>

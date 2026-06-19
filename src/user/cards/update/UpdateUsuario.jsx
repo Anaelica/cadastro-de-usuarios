@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function AtualizarUsuario({ usuario, onClose }) {
+export default function AtualizarUsuario({ usuario, onClose, onSuccess }) {
   const [nome, setNome] = useState(usuario.name);
   const [email, setEmail] = useState(usuario.email);
   const [avatar, setAvatar] = useState(null)
@@ -8,26 +8,34 @@ export default function AtualizarUsuario({ usuario, onClose }) {
 
   //o processo de atualização ficará aqui
   async function handleUpdate(){
-    const formData = new FormData()
-
-    formData.append("name", nome)
-    formData.append("email", email)
-
-    //a foto é opcional 
-    if(avatar){
-      formData.append("avatar", avatar)
-    }
-
-    const response = await fetch(
-       `http://localhost:3001/usuarios/${usuario.id}`,
-      {
-        method: "PUT",
-        body: formData,
-      })
-
-      if(response.ok){
-        console.log("Usuario atualizado")
+    try {
+      const formData = new FormData()
+  
+      formData.append("name", nome)
+      formData.append("email", email)
+  
+      //a foto é opcional 
+      if(avatar){
+        formData.append("avatar", avatar)
       }
+  
+      const response = await fetch(
+         `http://localhost:3001/usuarios/${usuario.id}`,
+        {
+          method: "PUT",
+          body: formData,
+        })
+
+        if(!response.ok){
+          throw new Error("Erro ao atualizar o usuário")
+        }
+
+      onSuccess()
+      onClose()
+      
+    } catch (error) {
+     console.error(error) 
+    }
   }
 
   function handleAvatarChange(e) {
