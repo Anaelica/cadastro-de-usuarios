@@ -6,7 +6,15 @@ export async function listarUsuarios(request, response) {
   try {
     const usuarios = await prisma.usuario.findMany();
 
-    return response.status(200).json(usuarios);
+    const usuariosFormatados = usuarios.map((usuario) => ({
+      ...usuario,
+      avatar: usuario.avatar
+        ? `${process.env.API_URL}/uploads/${usuario.avatar}`
+        : null,
+    }));
+
+    return response.status(200).json(usuariosFormatados);
+
   } catch (error) {
     console.error(error);
 
@@ -21,9 +29,9 @@ export async function criarUsuario(request, response) {
     const { name, email } = request.body;
 
     const avatar = request.file
-      ? `http://localhost:3001/uploads/${request.file.filename}`
+      ? request.file.filename
       : null;
-
+      
     const usuario = await prisma.usuario.create({
       data: {
         name,
@@ -65,7 +73,7 @@ export async function atualizarUsuario(request, response) {
 
     //Caso mandem uma nova foto ela substitui a antiga
     if(request.file) {
-      data.avatar = `http://localhost:3001/uploads/${request.file.filename}`
+      data.avatar = request.file.filename;
     }
 
       const usuarioAtualizado = await prisma.usuario.update({
