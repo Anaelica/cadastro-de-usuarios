@@ -102,3 +102,25 @@ return response.status(200).json(usuarioAtualizado);
     })
   }
 }
+
+export async function deletarUsuario(request, response) {
+   try {
+    const { id } = request.params
+    
+    await prisma.usuario.delete({
+      where: {
+        id: Number(id),
+      },
+    }) 
+
+    return response.status(200).json({
+      message: "Usuario deletado com sucesso."
+    })
+    } catch (error) {
+    console.error(error);
+
+    return response.status(500).json({
+      error: error.message,
+    });
+  }
+}

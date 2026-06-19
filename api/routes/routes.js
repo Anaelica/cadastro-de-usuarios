@@ -6,16 +6,25 @@ import {
   listarUsuarios,
   criarUsuario,
   atualizarUsuario,
+  deletarUsuario,
 } from "../controllers/usuarioController.js";
 
 const router = Router();
 
-router.get("/", listarUsuarios);
+router.get(
+  "/", 
+  listarUsuarios
+);
 
 router.put(
   "/:id",
   upload.single("avatar"),
   atualizarUsuario
+);
+
+router.delete(
+  "/:id",
+  deletarUsuario
 );
 
 router.post(

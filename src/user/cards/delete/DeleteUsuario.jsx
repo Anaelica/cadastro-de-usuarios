@@ -1,4 +1,25 @@
-export default function DeletarUsuario({ usuario, onClose }) {
+export default function DeletarUsuario({ usuario, onClose, onSuccess }) {
+  async function handleDelete() {
+    try {
+       const response = await fetch(
+         `http://localhost:3001/usuarios/${usuario.id}`,
+        {
+          method: "DELETE",
+        })
+
+        if(!response.ok){
+          throw new Error("Erro ao deletar usuario");
+        }
+
+        onSuccess()
+        onClose()
+
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+
   return (
     <div className="fixed inset-0 bg-black/40 flex items-center justify-center">
       <div className="flex flex-col gap-3 bg-zinc-900 rounded-2xl p-6 m-6 md:p-6 w-96">
@@ -14,10 +35,7 @@ export default function DeletarUsuario({ usuario, onClose }) {
 
         <div className="flex gap-8">
           <button
-            onClick={() => {
-              console.log(usuario.id); 
-              onClose();
-            }}
+            onClick={handleDelete}
             className="mt-4 bg-red-700 px-4 py-2 rounded-lg text-white"
           >
             Deletar
