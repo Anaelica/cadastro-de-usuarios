@@ -25,7 +25,7 @@ export default function Modal({ onClose, onCreate }) {
       formData.append("avatar", avatar);
     }
 
-    const response = await fetch("http://localhost:3001/usuarios", {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/usuarios`, {
       method: "POST",
       body: formData,
     });

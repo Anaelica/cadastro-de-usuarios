@@ -25,7 +25,7 @@ export default function AtualizarUsuario({ usuario, onClose, onSuccess }) {
         formData.append("avatar", avatar)
       }
       const response = await fetch(
-         `http://localhost:3001/usuarios/${usuario.id}`,
+         `${import.meta.env.VITE_API_URL}/usuarios/${usuario.id}`,
         {
           method: "PUT",
           body: formData,
