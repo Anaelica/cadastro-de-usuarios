@@ -1,6 +1,13 @@
+import { useState } from "react";
+import { Loader2 } from "lucide-react";
+
 export default function DeletarUsuario({ usuario, onClose, onSuccess }) {
+  const [loading, setLoading] = useState(false)
+
   async function handleDelete() {
     try {
+      setLoading(true)
+
        const response = await fetch(
          `http://localhost:3001/usuarios/${usuario.id}`,
         {
@@ -16,6 +23,8 @@ export default function DeletarUsuario({ usuario, onClose, onSuccess }) {
 
     } catch (error) {
       console.error(error)
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -33,17 +42,25 @@ export default function DeletarUsuario({ usuario, onClose, onSuccess }) {
           </p>
         </div>
 
-        <div className="flex gap-8">
+        <div className="flex flex-row-reverse gap-9">
           <button
             onClick={handleDelete}
-            className="mt-4 bg-red-700 px-4 py-2 rounded-lg text-white"
+            disabled={loading}
+            className="mt-4 w-32 bg-red-700 px-10 py-2 rounded-lg text-white disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
           >
-            Deletar
+            { loading ? (
+              <>
+                <Loader2 className="w-4 h-4 animate-spin"/>
+                Excluindo...
+              </>
+              ) : (
+                "Excluir"
+              )}
           </button>
 
           <button
             onClick={onClose}
-            className="mt-4 bg-neutral-800 px-8 py-2 rounded-lg text-white"
+            className="mt-4 bg-neutral-800 px-4 py-2 rounded-lg text-white"
           >
             Cancelar
           </button>
